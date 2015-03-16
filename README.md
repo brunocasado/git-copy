@@ -8,3 +8,8 @@ This script have to stay in git project.
 Stay at ease to modify this code :)
 
 Thanks!
+
+refs 
+
+https://gist.github.com/revathskumar/2028858#file-git-copy-sample-sh
+
