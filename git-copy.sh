@@ -36,19 +36,23 @@ function HELP {
   echo -e "${REV}-h${NORM}  --Displays this help message."\\n
   echo -e "Mandatory" \\n
   echo -e "${REV}-t${NORM}  --Target Path to create folders. "\\n
-  echo "./git-copy.sh  -t ~/projects/TEST_TAG/edicaonatura/ 6a5893a2be70f41301876eb60dacb4191d50524e 8fce41d1dae330dfa2b4b38e5e78305db7cc13ef"\\n
+  echo "./git-copy.sh  -t ~/projects/TEST_TAG/ 6a5893a2be70f41301876eb60dacb4191d50524e 8fce41d1dae330dfa2b4b38e5e78305db7cc13ef"\\n
   exit 1
 }
 
-if [ ! $# ]; then
+if [ $# -eq 0 ]; then
   HELP
 fi
     
-while getopts ":t:" OPT; do
+while getopts ":t:h" OPT; do
   case $OPT in
+    h)
+        HELP
+        exit;
+    ;;
     t)        
         TARGET=${OPTARG}
-      ;;
+    ;;
   esac
 done
 
@@ -60,7 +64,6 @@ done
 
 FILES=()
 
-echo $PATH
 for i in $COMMIT
 do
     FILES+=($(git diff-tree --name-only --no-commit-id -r $i))
